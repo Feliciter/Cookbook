@@ -2,7 +2,14 @@
 
 # Cookbook
 Cookbook frontend part
-1. Need to deploy and started backend app https://github.com/Feliciter/cookbookbackend
+1. Need to deploy and started backend part app https://github.com/Feliciter/cookbookbackend
+2. Need to deploy and started frontend part app https://github.com/Feliciter/Cookbook
+
+
+
+![alt text](r1.png)
+
+![alt text](r2.png)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
