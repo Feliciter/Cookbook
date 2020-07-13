@@ -6,13 +6,22 @@
 
 <!-- Form -->
 <div class="inner-wrapper">
-  <form [formGroup]="recipeForm" (ngSubmit)="submitRecipeForm()" #resetRecipeForm="ngForm" novalidate>
+  <form
+    [formGroup]="recipeForm"
+    (ngSubmit)="submitRecipeForm()"
+    #resetRecipeForm="ngForm"
+    novalidate
+  >
     <!-- Left block -->
     <mat-card>
       <div class="controlers-wrapper">
         <!-- Name -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Recipe name" formControlName="recipe_name">
+          <input
+            matInput
+            placeholder="Recipe name"
+            formControlName="recipe_name"
+          />
           <mat-error *ngIf="handleError('recipe_name', 'required')">
             You must provide a<strong>recipe name</strong>
           </mat-error>
@@ -20,13 +29,17 @@
 
         <!-- Recipe Method -->
         <mat-form-field class="example-full-width">
-          <textarea  matInput placeholder="Method" formControlName="recipe_description" appearance="fill"> </textarea>
+          <textarea
+            matInput
+            placeholder="Method"
+            formControlName="recipe_description"
+            appearance="fill"
+          >
+          </textarea>
           <mat-error *ngIf="handleError('recipe_description', 'required')">
             You must provide a recipe method
           </mat-error>
         </mat-form-field>
-
-  
       </div>
     </mat-card>
 
@@ -36,21 +49,30 @@
         <!-- Add Ingredients-->
         <mat-form-field class="multiple-items">
           <mat-chip-list #chipList>
-            <mat-chip *ngFor="let subjectArray of subjectArray" [selectable]="selectable" [removable]="removable"
-              (removed)="remove(subjectArray)">
-              {{subjectArray.name}}
+            <mat-chip
+              *ngFor="let subjectArray of subjectArray"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(subjectArray)"
+            >
+              {{ subjectArray.name }}
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
-            <input placeholder="Add Ingredients" [matChipInputFor]="chipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="add($event)">
+            <input
+              placeholder="Add Ingredients"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
           </mat-chip-list>
-          <i class="material-icons tooltip-info" matTooltip="Enter component and press enter to add components">
+          <i
+            class="material-icons tooltip-info"
+            matTooltip="Enter component and press enter to add components"
+          >
             info
           </i>
         </mat-form-field>
-
-     
       </div>
     </mat-card>
 
