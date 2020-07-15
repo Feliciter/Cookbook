@@ -7,41 +7,24 @@
 <p *ngIf="RecipeData.length <= 0" class="no-data">There is no recipe added yet!</p>
 
 <div class="container" *ngIf="RecipeData.length > 0">
-  <div >
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" matSortActive="dt" matSortDirection="desc" matSortDisableClear>      
+  <div>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" matSortActive="dt"
+      matSortDirection="desc" matSortDisableClear>
 
       <ng-container matColumnDef="recipe_name">
-        <th mat-header-cell *matHeaderCellDef > Recipe Name </th>
-        <td mat-cell *matCellDef="let element">   <a [title]="element.recipe_name + ' details'" [routerLink]="['/edit-recipe/', element._id]">
-          {{ element.recipe_name }}
-        </a>
-         </td>
+        <th mat-header-cell *matHeaderCellDef> Recipe Name </th>
+        <td mat-cell *matCellDef="let element"> <a [title]="element.recipe_name + ' details'"
+            [routerLink]="['/edit-recipe/', element._id]">
+            {{ element.recipe_name }}
+          </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="recipe_description">
-        <th mat-header-cell *matHeaderCellDef >Method</th>
+        <th mat-header-cell *matHeaderCellDef>Method</th>
         <td mat-cell *matCellDef="let element" class="ellipsis"> {{element.recipe_description }} </td>
-      </ng-container> 
-
-<!-- 
-      <ng-container matColumnDef="created">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Created </th>
-        <td mat-cell *matCellDef="let element" class="dt"> {{element.created_at | date:'medium' }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="dtlm">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Dtlm</th>
-        <td mat-cell *matCellDef="let element" class="dt"> {{element.updated_at | date:'medium' }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let element; let i = index;">
-          <button mat-raised-button color="primary" class="push-right"
-            [routerLink]="['/edit-recipe/', element._id]">Edit</button>
-          <button mat-raised-button color="accent" (click)="deleteRecipe(i, element)">Delete</button>
-        </td>
-      </ng-container> --> 
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -50,4 +33,3 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
-

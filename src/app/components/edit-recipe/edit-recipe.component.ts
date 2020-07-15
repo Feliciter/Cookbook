@@ -1,31 +1,26 @@
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-
-import { ApiService } from './../../shared/api.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-import { MatTableDataSource } from "@angular/material/table";
-
-import { Recipe } from "./../../shared/recipe";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit, ViewChild, NgZone } from "@angular/core";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { MatChipInputEvent } from "@angular/material/chips";
+import { ApiService } from "./../../shared/api.service";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 export interface Subject {
   name: string;
 }
 
 @Component({
-  selector: 'app-edit-recipe',
-  templateUrl: './edit-recipe.component.html',
-  styleUrls: ['./edit-recipe.component.css'],
+  selector: "app-edit-recipe",
+  templateUrl: "./edit-recipe.component.html",
+  styleUrls: ["./edit-recipe.component.css"],
 })
 export class EditRecipeComponent implements OnInit {
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
-  @ViewChild('chipList') chipList;
-  @ViewChild('resetRecipeForm') myNgForm;
+  @ViewChild("chipList") chipList;
+  @ViewChild("resetRecipeForm") myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   recipeForm: FormGroup;
   subjectArray: Subject[] = [];
@@ -43,9 +38,8 @@ export class EditRecipeComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private recipeApi: ApiService
   ) {
-    let id = this.actRoute.snapshot.paramMap.get('id');
+    let id = this.actRoute.snapshot.paramMap.get("id");
     this.recipeApi.GetRecipe(id).subscribe((data) => {
-     
       this.subjectArray = data.subjects;
       this.recipeForm = this.fb.group({
         recipe_name: [data.recipe_name, [Validators.required]],
@@ -58,8 +52,8 @@ export class EditRecipeComponent implements OnInit {
   /* Reactive  form */
   updateRForm() {
     this.recipeForm = this.fb.group({
-      recipe_name: ['', [Validators.required]],
-      recipe_description: ['', [Validators.required]],
+      recipe_name: ["", [Validators.required]],
+      recipe_description: ["", [Validators.required]],
       subjects: [this.subjectArray],
     });
   }
@@ -69,12 +63,12 @@ export class EditRecipeComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    if ((value || '').trim() && this.subjectArray.length < 50) {
+    if ((value || "").trim() && this.subjectArray.length < 50) {
       this.subjectArray.push({ name: value.trim() });
     }
     // Reset the input value
     if (input) {
-      input.value = '';
+      input.value = "";
     }
   }
 
@@ -92,36 +86,24 @@ export class EditRecipeComponent implements OnInit {
   };
 
   /* Update  */
-  updateRecipeForm() {   
-    let id = this.actRoute.snapshot.paramMap.get('id');
-    if (window.confirm('Are you sure you want to update?')) {
+  updateRecipeForm() {
+    let id = this.actRoute.snapshot.paramMap.get("id");
+    if (window.confirm("Are you sure you want to update?")) {
       this.recipeApi
         .UpdateRecipe(id, this.recipeForm.value)
         .subscribe((res) => {
-          this.ngZone.run(() => this.router.navigateByUrl('/recipe-list'));
+          this.ngZone.run(() => this.router.navigateByUrl("/recipe-list"));
         });
     }
   }
 
-
-    ///
+  
   deleteRecipe() {
-    let id = this.actRoute.snapshot.paramMap.get('id');
+    let id = this.actRoute.snapshot.paramMap.get("id");
     if (window.confirm("Are you sure")) {
-    
       this.recipeApi.DeleteRecipe(id).subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('/recipe-list'));
+        this.ngZone.run(() => this.router.navigateByUrl("/recipe-list"));
       });
     }
   }
-
-
-  viewDT() {
-    var id = this.actRoute.snapshot.paramMap.get('id');
-
-  }
-
-
-
-
 }
