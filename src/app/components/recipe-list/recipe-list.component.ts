@@ -19,8 +19,7 @@ export class RecipeListComponent implements OnInit {
 
   displayedColumns: string[] = [
     "recipe_name",
-    "recipe_description",
-   
+    "recipe_description"   
   ];
 
   constructor(private recipeApi: ApiService) {}
@@ -42,15 +41,15 @@ export class RecipeListComponent implements OnInit {
     }
   }
 
-  deleteRecipe(index: number, e) {
-    if (window.confirm("Are you sure")) {
-      const data = this.dataSource.data;
-      data.splice(
-        this.paginator.pageIndex * this.paginator.pageSize + index,
-        1
-      );
-      this.dataSource.data = data;
-      this.recipeApi.DeleteRecipe(e._id).subscribe();
-    }
-  }
+  // deleteRecipe(index: number, e) {
+  //   if (window.confirm("Are you sure")) {
+  //     const data = this.dataSource.data;
+  //     data.splice(
+  //       this.paginator.pageIndex * this.paginator.pageSize + index,
+  //       1
+  //     );
+  //     this.dataSource.data = data;
+  //     this.recipeApi.DeleteRecipe(e._id).subscribe();
+  //   }
+  // }
 }
