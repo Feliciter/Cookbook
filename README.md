@@ -1,31 +1,20 @@
 
 
 # Cookbook
+  Little Angular Material application
 
  [DEMO GitHub Pages](https://feliciter.github.io/Cookbook/recipe-list)
+ On Heroku
 
 
-
-Cookbook frontend part
-1. Need to deploy and started backend part app https://github.com/Feliciter/cookbookbackend
-2. Need to deploy and started frontend part app https://github.com/Feliciter/Cookbook
-
-DEMO https://feliciter.github.io/Cookbook/recipe-list
-
-![alt text](r1.png)
-
-![alt text](r2.png)
-
+1. Backend https://github.com/Feliciter/cookbookbackend (MongoDB,Express,Node )
+2. Frontend  https://github.com/Feliciter/Cookbook
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
