@@ -37,6 +37,12 @@ body .push-right{margin-right:10px;}
 }
 @media (max-width:767px){.nav-tool-items{margin-right:0;}
  .hamburger{visibility:visible !important;}
+
+
+}
+
+.md-button .md-small {
+    min-width: 1%;
 }
 
 table  td.mat-cell:nth-child(1)  {
@@ -45,7 +51,7 @@ table  td.mat-cell:nth-child(1)  {
 }
 
 table  td.mat-cell:nth-child(2)  {
-    width: 25%;
+    width: 75%;
     
 }
 

@@ -6,6 +6,10 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { MatTableDataSource } from "@angular/material/table";
+
+import { Recipe } from "./../../shared/recipe";
+
 export interface Subject {
   name: string;
 }
@@ -29,7 +33,7 @@ export class EditRecipeComponent implements OnInit {
   selected = {};
 
   ngOnInit() {
-    this.updateBookForm();
+    this.updateRForm();
   }
 
   constructor(
@@ -39,7 +43,7 @@ export class EditRecipeComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private recipeApi: ApiService
   ) {
-    var id = this.actRoute.snapshot.paramMap.get('id');
+    let id = this.actRoute.snapshot.paramMap.get('id');
     this.recipeApi.GetRecipe(id).subscribe((data) => {
      
       this.subjectArray = data.subjects;
@@ -51,8 +55,8 @@ export class EditRecipeComponent implements OnInit {
     });
   }
 
-  /* Reactive book form */
-  updateBookForm() {
+  /* Reactive  form */
+  updateRForm() {
     this.recipeForm = this.fb.group({
       recipe_name: ['', [Validators.required]],
       recipe_description: ['', [Validators.required]],
@@ -74,7 +78,7 @@ export class EditRecipeComponent implements OnInit {
     }
   }
 
-  /* Remove dynamic  */
+  /* Remove dynamic subjects */
   remove(subject: Subject): void {
     const index = this.subjectArray.indexOf(subject);
     if (index >= 0) {
@@ -88,9 +92,8 @@ export class EditRecipeComponent implements OnInit {
   };
 
   /* Update  */
-  updateRecipeForm() {
-   
-    var id = this.actRoute.snapshot.paramMap.get('id');
+  updateRecipeForm() {   
+    let id = this.actRoute.snapshot.paramMap.get('id');
     if (window.confirm('Are you sure you want to update?')) {
       this.recipeApi
         .UpdateRecipe(id, this.recipeForm.value)
@@ -99,4 +102,26 @@ export class EditRecipeComponent implements OnInit {
         });
     }
   }
+
+
+    ///
+  deleteRecipe() {
+    let id = this.actRoute.snapshot.paramMap.get('id');
+    if (window.confirm("Are you sure")) {
+    
+      this.recipeApi.DeleteRecipe(id).subscribe(() => {
+        this.ngZone.run(() => this.router.navigateByUrl('/recipe-list'));
+      });
+    }
+  }
+
+
+  viewDT() {
+    var id = this.actRoute.snapshot.paramMap.get('id');
+
+  }
+
+
+
+
 }
