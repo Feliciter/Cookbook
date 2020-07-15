@@ -20,9 +20,7 @@ export class RecipeListComponent implements OnInit {
   displayedColumns: string[] = [
     "recipe_name",
     "recipe_description",
-    "created",
-    "dtlm",
-    "action",
+   
   ];
 
   constructor(private recipeApi: ApiService) {}
