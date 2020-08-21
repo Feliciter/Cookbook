@@ -4,11 +4,12 @@
   Little Angular Material application
 
  [DEMO GitHub Pages](https://feliciter.github.io/Cookbook/recipe-list)
- On Heroku
+ On Heroku 
 
 
 1. Backend https://github.com/Feliciter/cookbookbackend (MongoDB,Express,Node )
-2. Frontend  https://github.com/Feliciter/Cookbook
+2. Frontend  https://github.com/Feliciter/Cookbook  
+(! If Recipes List is empty  , refresh page to wake up Heroku backend )
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
